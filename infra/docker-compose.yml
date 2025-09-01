@@ -1,2 +1,18 @@
-# Services attendus : reverse-proxy, frontend, backend, db
-# Ports réservés : 443 (proxy), 3000 (frontend), 8080 (backend)
+services:
+  reverse-proxy:
+    image: nginx:1.27-alpine
+    container_name: reverse-proxy
+    ports:
+      - "8443:443"
+    volumes:
+        - ./reverse-proxy/spa.conf:/etc/nginx/conf.d/spa.conf:ro
+        - ./reverse-proxy/certs/localhost.crt:/etc/nginx/certs/dev.crt:ro
+        - ./reverse-proxy/certs/localhost.key:/etc/nginx/certs/dev.key:ro
+        - ./reverse-proxy/html:/usr/share/nginx/html:ro
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
+
