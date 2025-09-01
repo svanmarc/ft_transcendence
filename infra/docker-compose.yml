@@ -1,0 +1,2 @@
+# Services attendus : reverse-proxy, frontend, backend, db
+# Ports réservés : 443 (proxy), 3000 (frontend), 8080 (backend)
